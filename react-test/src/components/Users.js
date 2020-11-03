@@ -23,6 +23,11 @@ export default class Users extends React.Component {
 
     render() {
         const { users, isLoading } = this.state;
-        return <>{ !isLoading && <ul>{this.renderList(users)}</ul>}</>
+        return (
+                <>
+                    <h1>Авторы</h1>
+                    { !isLoading && <ul>{this.renderList(users)}</ul>}
+                </>
+        )
     }
 }

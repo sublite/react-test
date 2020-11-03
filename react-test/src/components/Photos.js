@@ -24,6 +24,11 @@ export default class Photos extends React.Component {
 
     render() {
         const { photos, isLoading } = this.state;
-        return <>{ !isLoading && <ul>{this.renderPhoto(photos)}</ul>}</>
+        return (
+            <>
+                <h1>Фото</h1>
+                { !isLoading && <ul>{this.renderPhoto(photos)}</ul>}
+            </>
+        )
     }
 }
