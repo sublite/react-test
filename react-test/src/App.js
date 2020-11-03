@@ -1,6 +1,7 @@
 import React from "react";
 import Users from './components/Users';
 import Albums from './components/Albums';
+import Photos from './components/Photos';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +17,9 @@ export default function App() {
             </Route>
             <Route path="/albums">
               <Albums />
+            </Route>
+            <Route path="/photos">
+              <Photos />
             </Route>
           </Switch> 
       </Router>

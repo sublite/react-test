@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import { config } from '../config';
 
 export default class Albums extends React.Component {
@@ -19,7 +20,7 @@ export default class Albums extends React.Component {
     }
 
     renderAlbum = (albums) => {
-        return albums.map((album) => <li key={album.id}>{album.title}</li>);
+        return albums.map((album) => <li key={album.id}><Link to={`/photos?album_id=${album.id}`}>{album.title}</Link></li>);
     }
 
     render() {
