@@ -15,12 +15,16 @@ export default class Albums extends React.Component {
     async componentDidMount() {
         const urlParam = new URLSearchParams(window.location.search);
         const id = urlParam.get('user_id');
-        const response = await axios.get(`${config.url}/albums?userId=${id}`);
-        this.setState({ albums: response.data, isLoading: false });
+        const albums = await axios.get(`${config.url}/albums?userId=${id}`);
+        const photosData = await axios.get(`${config.url}/photos`);
+        this.setState({ albums: albums.data, isLoading: false });
     }
 
     renderAlbum = (albums) => {
-        return albums.map((album) => <li key={album.id}><Link to={`/gallery?album_id=${album.id}`}>{album.title}</Link></li>);
+        return albums.map((album) => <li key={album.id}>
+                    <Link to={`/gallery?album_id=${album.id}`}>{album.title}</Link>
+                </li>
+        );
     }
 
     render() {

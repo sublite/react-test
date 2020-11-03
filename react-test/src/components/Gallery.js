@@ -25,12 +25,12 @@ export default class Gallery extends React.Component {
         this.setState({ isPopupVisible: !isPopupVisible });
     }
 
-    renderPopUp = () => {
+    renderPopUp = (url) => {
         const { isPopupVisible } = this.state;
         return (
             isPopupVisible &&
             <Popup
-                url={"123"}
+                url={url}
                 close={this.togglePopup}
             />
         )
@@ -40,7 +40,6 @@ export default class Gallery extends React.Component {
         return photos.map((photo) => 
             <li key={photo.id}>
                 <div>
-                    {this.renderPopUp()}
                     <div>{photo.title}</div>
                     <div><img src={photo.thumbnailUrl} /></div>
                     <button onClick={this.togglePopup}>show popup</button>  
@@ -53,6 +52,7 @@ export default class Gallery extends React.Component {
         const { photos, isLoading } = this.state;
         return (
             <>
+                {this.renderPopUp(123)}
                 <h1>Фото</h1>
                 { !isLoading && <ul>{this.renderPhoto(photos)}</ul>}
             </>
