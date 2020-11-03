@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { config } from '../config';
 
 export default class Albums extends React.Component {
     constructor(props) {
@@ -11,7 +12,9 @@ export default class Albums extends React.Component {
     }
 
     async componentDidMount() {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
+        const urlParam = new URLSearchParams(window.location.search);
+        const id = urlParam.get('user_id');
+        const response = await axios.get(`${config.url}/albums?userId=${id}`);
         this.setState({ albums: response.data, isLoading: false });
     }
 
@@ -19,8 +22,8 @@ export default class Albums extends React.Component {
         return albums.map((album) => <li key={album.id}>{album.title}</li>);
     }
 
-  render() {
-    const { albums, isLoading } = this.state;
-    return <>{ !isLoading && <ul>{this.renderAlbum(albums)}</ul>}</>
-  }
+    render() {
+        const { albums, isLoading } = this.state;
+        return <>{ !isLoading && <ul>{this.renderAlbum(albums)}</ul>}</>
+    }
 }
