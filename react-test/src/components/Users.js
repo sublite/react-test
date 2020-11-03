@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 export default class Users extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ export default class Users extends React.Component {
         }
 
     renderList = (users) => {
-        return users.map((user) => <li key={user.id}>{user.name}</li>);
+        return users.map((user) => <li key={user.id}><Link to="albums">{user.name}</Link></li>);
     }
 
   render() {

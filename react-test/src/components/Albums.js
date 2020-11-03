@@ -13,12 +13,10 @@ export default class Albums extends React.Component {
     async componentDidMount() {
         const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
         this.setState({ albums: response.data, isLoading: false });
-        }
+    }
 
     renderAlbum = (albums) => {
-        // return albums.map((album) => <li key={album.id}>{album.title}</li>);
         return albums.map((album) => <li key={album.id}>{album.title}</li>);
-
     }
 
   render() {
