@@ -20,7 +20,7 @@ export default class Albums extends React.Component {
     }
 
     renderAlbum = (albums) => {
-        return albums.map((album) => <li key={album.id}><Link to={`/photos?album_id=${album.id}`}>{album.title}</Link></li>);
+        return albums.map((album) => <li key={album.id}><Link to={`/gallery?album_id=${album.id}`}>{album.title}</Link></li>);
     }
 
     render() {
