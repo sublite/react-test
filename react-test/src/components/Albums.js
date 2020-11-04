@@ -46,6 +46,7 @@ export default class Albums extends React.Component {
         const { albums, isLoading } = this.state;
         return (
             <>
+                <Link to="/">Назад</Link>
                 <h1>Альбомы</h1>
                 { !isLoading && <ul>{this.renderAlbum(albums)}</ul>}
             </>

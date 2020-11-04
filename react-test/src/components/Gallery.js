@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { config } from '../config';
-import { Link } from "react-router-dom";
 import Popup from './Popup';
 
 export default class Gallery extends React.Component {
@@ -54,7 +53,7 @@ export default class Gallery extends React.Component {
         return (
             <>
                 {this.renderPopUp(123)}
-                <h1>Фото</h1>
+                <h1>Фотографии</h1>
                 { !isLoading && <ul>{this.renderPhoto(photos)}</ul>}
             </>
         )
