@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { config } from '../config';
+import { Link } from "react-router-dom";
 import Popup from './Popup';
 
 export default class Gallery extends React.Component {
@@ -41,7 +42,7 @@ export default class Gallery extends React.Component {
             <li key={photo.id}>
                 <div>
                     <div>{photo.title}</div>
-                    <div><img src={photo.thumbnailUrl} /></div>
+                    <div><img src={photo.thumbnailUrl} alt="preview image" /></div>
                     <button onClick={this.togglePopup}>show popup</button>  
                 </div>
             </li>
