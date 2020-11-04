@@ -6,8 +6,7 @@ export default class Popup extends React.Component {
         return (
             <div className='popup'>
                 <div className='popup_inner'>
-                     {/* <img src={url} width="500" height="500" /> */}
-                     <div>{url}</div>
+                    <img src={url} alt="url" className='popup_image' />
                     <button onClick={close}>Закрыть</button>
                 </div>
             </div>

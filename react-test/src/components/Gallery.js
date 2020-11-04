@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { config } from '../config';
 import Popup from './Popup';
+import { Link } from "react-router-dom";
 
 export default class Gallery extends React.Component {
     constructor(props) {
@@ -10,6 +11,7 @@ export default class Gallery extends React.Component {
             isLoading: true,
             isPopupVisible: false,
             photos: null,
+            urlPhoto: "",
         };
     }
 
@@ -20,20 +22,20 @@ export default class Gallery extends React.Component {
         this.setState({ photos: response.data, isLoading: false });
     }
 
-    togglePopup = () => {
+    togglePopup = (url) => {
         const { isPopupVisible } = this.state;
-        this.setState({ isPopupVisible: !isPopupVisible });
+        this.setState({ isPopupVisible: !isPopupVisible, urlPhoto: url });
     }
 
-    renderPopUp = (url) => {
-        const { isPopupVisible } = this.state;
+    renderPopUp = () => {
+        const { isPopupVisible, urlPhoto } = this.state;
         return (
             isPopupVisible &&
             <Popup
-                url={url}
+                url={urlPhoto}
                 close={this.togglePopup}
             />
-        )
+        );
     }
 
     renderPhoto = (photos) => {
@@ -42,7 +44,7 @@ export default class Gallery extends React.Component {
                 <div>
                     <div>{photo.title}</div>
                     <div><img src={photo.thumbnailUrl} alt="preview image" /></div>
-                    <button onClick={this.togglePopup}>show popup</button>  
+                    <button onClick={() => this.togglePopup(photo.url)}>show popup</button>  
                 </div>
             </li>
         );
@@ -52,9 +54,9 @@ export default class Gallery extends React.Component {
         const { photos, isLoading } = this.state;
         return (
             <>
-                {this.renderPopUp(123)}
+                 {this.renderPopUp()}
                 <h1>Фотографии</h1>
-                { !isLoading && <ul>{this.renderPhoto(photos)}</ul>}
+                {!isLoading && <ul>{this.renderPhoto(photos)}</ul>}
             </>
         )
     }
