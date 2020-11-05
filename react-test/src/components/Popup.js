@@ -7,35 +7,35 @@ export default class Popup extends React.Component {
         this.state = {
             idPhoto: 0,
             url: "",
-            photoCount: 0,
+            lastIndex: 0,
         };
     }
 
     componentDidMount() {
         const { id, photoData } = this.props;
-        const url = this.getUrl(id);
-        const count = photoData.length;
-        this.setState({ url, photoCount: count, idPhoto: id });
-    }
-
-    getUrl = (id) => {
-        const { photoData } = this.props;
-        const url = _.find(photoData, {'id': id}).url;
-        return url;
+        const url = _.find(photoData, { id }).url;
+        const lastIndex = photoData.length - 1;
+        this.setState({ url, lastIndex, idPhoto: id });
     }
 
     handleNext = () => {
-        const { idPhoto, photoCount } = this.state;
-        const id = (idPhoto + 1) > photoCount ? 1 : idPhoto + 1;
-        const url = this.getUrl(id);
-        this.setState({ idPhoto: id, url })
+        const { idPhoto, lastIndex } = this.state;
+        const { photoData } = this.props;
+        const index = _.findIndex(photoData, { id: idPhoto });
+        const newIndex = (index + 1) > lastIndex ? 0 : index + 1;
+        const { url } = photoData[newIndex];
+        const { id } = photoData[newIndex];
+        this.setState({ idPhoto: id, url });
     }
 
     handlePrev = () => {
-        const { idPhoto, photoCount } = this.state;
-        const id = (idPhoto - 1) < 1 ? photoCount : idPhoto - 1;
-        const url = this.getUrl(id);
-        this.setState({ idPhoto: id, url })
+        const { idPhoto, lastIndex } = this.state;
+        const { photoData } = this.props;
+        const index = _.findIndex(photoData, { id: idPhoto });
+        const newIndex = (index - 1) < 1 ? lastIndex : index - 1;
+        const { url } = photoData[newIndex];
+        const { id } = photoData[newIndex];
+        this.setState({ idPhoto: id, url });
     }
 
     render() {
