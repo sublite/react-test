@@ -54,10 +54,15 @@ export default class Gallery extends React.Component {
         );
     }
 
+    goBack = () => {
+        return  window.history.back();
+    }
+
     render() {
         const { photos, isLoading } = this.state;
         return (
             <>
+                <button onClick={this.goBack}>Назад</button>
                 <h1>Фотографии</h1>
                 {isLoading && <div className="circularProgress"/>}
                 {!isLoading && 
