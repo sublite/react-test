@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { config } from '../config';
 import Popup from './Popup';
-import { Link } from "react-router-dom";
 
 export default class Gallery extends React.Component {
     constructor(props) {
@@ -11,7 +10,7 @@ export default class Gallery extends React.Component {
             isLoading: true,
             isPopupVisible: false,
             photos: null,
-            urlPhoto: "",
+            idPhoto: "",
         };
     }
 
@@ -22,18 +21,23 @@ export default class Gallery extends React.Component {
         this.setState({ photos: response.data, isLoading: false });
     }
 
-    togglePopup = (url) => {
-        const { isPopupVisible } = this.state;
-        this.setState({ isPopupVisible: !isPopupVisible, urlPhoto: url });
+    openPopUp = (id) => {
+        this.setState({ isPopupVisible: true, idPhoto: id });
+    }
+
+    closePopUp = () => {
+        this.setState({ isPopupVisible: false })
     }
 
     renderPopUp = () => {
-        const { isPopupVisible, urlPhoto } = this.state;
+        const { isPopupVisible, idPhoto, photos } = this.state;
+        const photoData = photos.map((elem) =>( {id: elem.id, url: elem.url}));
         return (
             isPopupVisible &&
             <Popup
-                url={urlPhoto}
-                close={this.togglePopup}
+                id={idPhoto}
+                photoData={photoData}
+                close={this.closePopUp}
             />
         );
     }
@@ -44,7 +48,7 @@ export default class Gallery extends React.Component {
                 <div>
                     <div>{photo.title}</div>
                     <div><img src={photo.thumbnailUrl} alt="preview image" /></div>
-                    <button onClick={() => this.togglePopup(photo.url)}>show popup</button>  
+                    <button onClick={() => this.openPopUp(photo.id)}>show popup</button>  
                 </div>
             </li>
         );
@@ -54,9 +58,13 @@ export default class Gallery extends React.Component {
         const { photos, isLoading } = this.state;
         return (
             <>
-                 {this.renderPopUp()}
                 <h1>Фотографии</h1>
-                {!isLoading && <ul>{this.renderPhoto(photos)}</ul>}
+                {!isLoading && 
+                <>
+                    {this.renderPopUp()}
+                    <ul>{this.renderPhoto(photos)}</ul>
+                </>
+                }
             </>
         )
     }
