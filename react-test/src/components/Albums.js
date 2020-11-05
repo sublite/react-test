@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import CircularProgress from './CircularProgress';
 import { config } from '../config';
+import { Link } from "react-router-dom";
 
 export default class Albums extends React.Component {
     constructor(props) {
@@ -32,13 +33,14 @@ export default class Albums extends React.Component {
 
     renderAlbum = (albums) => {
         const { photoData } = this.state;
-        return albums.map((album) => <li key={album.id}>
-                    <div>
-                        <span>Количество фотографий в альбоме - {photoData[album.id].length}</span>
-                        <img src={photoData[album.id][0].thumbnailUrl} alt="cover"/>
-                        <Link to={`/gallery?album_id=${album.id}`}>{album.title}</Link>
+        return albums.map((album) => <div className="album" key={album.id}>
+                    <Link to={`/gallery?album_id=${album.id}`}>
+                        <div className="albumCover">
+                            <img src={photoData[album.id][0].thumbnailUrl} alt="cover"/>
+                        </div>
+                    </Link>
+                    <span className="albumInfo">{album.title}, {photoData[album.id].length} шт. </span>
                     </div>
-                </li>
         );
     }
 
@@ -47,9 +49,9 @@ export default class Albums extends React.Component {
         return (
             <>
                 <Link to="/">Назад</Link>
-                <h1>Альбомы</h1>
-                {isLoading && <div className="circularProgress"/>}
-                { !isLoading && <ul>{this.renderAlbum(albums)}</ul>}
+                <p className="title">Альбомы</p>
+                {isLoading && <CircularProgress />}
+                { !isLoading && <div className="gallery">{this.renderAlbum(albums)}</div>}
             </>
         );
     }

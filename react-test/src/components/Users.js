@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
 import { config } from '../config';
+import CircularProgress from './CircularProgress';
+import { Link } from "react-router-dom";
 
 export default class Users extends React.Component {
     constructor(props) {
@@ -21,21 +22,12 @@ export default class Users extends React.Component {
         return users.map((user) => <p className="userList" key={user.id}><Link to={`/albums?user_id=${user.id}`}>{user.name}</Link></p>);
     }
 
-    renderProgress = () => {
-        return (
-            <div className="progressContainer">
-                <div className="circularProgress"/>
-                    <p>Загрузка...</p>
-            </div>
-        );
-    }
-
     render() {
         const { users, isLoading } = this.state;
         return (
                 <>
                     <p className="title">Список авторов</p>
-                    {isLoading && this.renderProgress()}
+                    {isLoading && <CircularProgress />}
                     {!isLoading && 
                         <div className="users">
                             {this.renderList(users)}

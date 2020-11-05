@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { config } from '../config';
+import CircularProgress from './CircularProgress';
 import Popup from './Popup';
 
 export default class Gallery extends React.Component {
@@ -64,7 +65,7 @@ export default class Gallery extends React.Component {
             <>
                 <button onClick={this.goBack}>Назад</button>
                 <h1>Фотографии</h1>
-                {isLoading && <div className="circularProgress"/>}
+                {isLoading && <CircularProgress />}
                 {!isLoading && 
                 <>
                     {this.renderPopUp()}
