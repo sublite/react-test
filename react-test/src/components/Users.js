@@ -26,7 +26,8 @@ export default class Users extends React.Component {
         return (
                 <>
                     <h1>Авторы</h1>
-                    { !isLoading && <ul>{this.renderList(users)}</ul>}
+                    {isLoading && <div className="circularProgress"/>}
+                    {!isLoading && <ul>{this.renderList(users)}</ul>}
                 </>
         )
     }

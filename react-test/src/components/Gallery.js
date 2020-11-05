@@ -59,6 +59,7 @@ export default class Gallery extends React.Component {
         return (
             <>
                 <h1>Фотографии</h1>
+                {isLoading && <div className="circularProgress"/>}
                 {!isLoading && 
                 <>
                     {this.renderPopUp()}

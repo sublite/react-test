@@ -42,9 +42,9 @@ export default class Popup extends React.Component {
         const { close } = this.props;
         const { url } = this.state;
         return (
-            <div className='popup'>
-                <div className='popup_inner'>
-                    <img src={url} alt="url" className='popup_image' />
+            <div className="popup">
+                <div className="popupMain">
+                    <img src={url} alt="url" className="popupImage" />
                     <button onClick={close}>Закрыть</button>
                     <button onClick={this.handleNext}>Вперед</button>
                     <button onClick={this.handlePrev}>Назад</button>

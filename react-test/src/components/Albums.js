@@ -48,6 +48,7 @@ export default class Albums extends React.Component {
             <>
                 <Link to="/">Назад</Link>
                 <h1>Альбомы</h1>
+                {isLoading && <div className="circularProgress"/>}
                 { !isLoading && <ul>{this.renderAlbum(albums)}</ul>}
             </>
         );
