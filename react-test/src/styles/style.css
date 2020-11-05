@@ -53,3 +53,25 @@ code {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userList {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  /* margin-bottom: 20px; */
+  font-size: 30px;
+}

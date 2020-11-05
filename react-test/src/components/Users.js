@@ -18,16 +18,20 @@ export default class Users extends React.Component {
     }
 
     renderList = (users) => {
-        return users.map((user) => <li key={user.id}><Link to={`/albums?user_id=${user.id}`}>{user.name}</Link></li>);
+        return users.map((user) => <p className="userList" key={user.id}><Link to={`/albums?user_id=${user.id}`}>{user.name}</Link></p>);
     }
 
     render() {
         const { users, isLoading } = this.state;
         return (
                 <>
-                    <h1>Авторы</h1>
+                    <p className="title">Список авторов</p>
                     {isLoading && <div className="circularProgress"/>}
-                    {!isLoading && <ul>{this.renderList(users)}</ul>}
+                    {!isLoading && 
+                        <div className="users">
+                            {this.renderList(users)}
+                        </div>
+                    }
                 </>
         )
     }
