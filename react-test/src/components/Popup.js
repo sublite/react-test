@@ -43,7 +43,7 @@ export default class Popup extends React.Component {
         const { url } = this.state;
         return (
             <div className="popup">
-                <button className="closeButton" onClick={close}>Закрыть</button>
+                <button className="popUpButton closeButton" onClick={close}>Закрыть</button>
                 <div className="popupMain">
                     <img src={url} alt="url" className="popupImage" />
                     <div className="popUpFooter">
