@@ -47,9 +47,14 @@ export default class Gallery extends React.Component {
         return photos.map((photo) => 
             <div key={photo.id}>
                 <div className="image">
-                    <img src={photo.thumbnailUrl} alt="preview image" onClick={() => this.openPopUp(photo.id)} />
+                    <img 
+                        className="previewImage"
+                        src={photo.thumbnailUrl} 
+                        alt="preview image" 
+                        onClick={() => this.openPopUp(photo.id)} 
+                    />
                 </div>
-                <div className="info">{photo.title}</div>
+                <p className="info">{photo.title}</p>
             </div>
         );
     }
@@ -62,13 +67,13 @@ export default class Gallery extends React.Component {
         const { photos, isLoading } = this.state;
         return (
             <>
-                <button onClick={this.goBack}>Назад</button>
-                <p className="title">Альбомы</p>
+                <button className="buttonBack" onClick={this.goBack}>К списку альбомов</button>
+                <p className="title">Фотографии</p>
                 {isLoading && <CircularProgress />}
                 {!isLoading && 
                 <>
                     {this.renderPopUp()}
-                    <div className="gallery">{this.renderPhoto(photos)}</div>
+                    <div className="grid">{this.renderPhoto(photos)}</div>
                 </>
                 }
             </>

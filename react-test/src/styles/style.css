@@ -28,8 +28,8 @@ code {
   position: absolute;
   left: 25%;
   right: 25%;
-  top: 5%;
-  bottom: 5%;
+  top: 15%;
+  bottom: 15%;
   margin: auto;
   background: white;
 }
@@ -76,7 +76,7 @@ code {
   flex-direction: column;
   align-items: center;
   margin: 0;
-  margin-top: 50px;
+  margin-top: 15px;
   margin-bottom: 30px;
   font-size: 30px;
 }
@@ -94,11 +94,65 @@ code {
   align-items: center;
 }
 
-.gallery {
+.grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 220px);
-  grid-gap: 15px;
+  grid-gap: 30px;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.previewImage {
+  cursor: pointer;
+}
+
+.buttonBack {
+  background-color: #e7e7e7; color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-top: 35px;
+  margin-left: 35px;
+}
+
+.popUpFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.closeButton {
+  position: absolute;
+  right: 25%;
+  top: 9%;
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 7px 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.popUpButton {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 7px 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
 }

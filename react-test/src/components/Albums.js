@@ -39,7 +39,7 @@ export default class Albums extends React.Component {
                             <img src={photoData[album.id][0].thumbnailUrl} alt="cover"/>
                         </div>
                     </Link>
-                    <span className="info">{album.title}, {photoData[album.id].length} шт. </span>
+                    <p className="info">{album.title}, {photoData[album.id].length} шт. </p>
                     </div>
         );
     }
@@ -48,10 +48,10 @@ export default class Albums extends React.Component {
         const { albums, isLoading } = this.state;
         return (
             <>
-                <Link to="/">Назад</Link>
+                <Link to="/"><button className="buttonBack">К списку авторов</button></Link>
                 <p className="title">Альбомы</p>
                 {isLoading && <CircularProgress />}
-                { !isLoading && <div className="gallery">{this.renderAlbum(albums)}</div>}
+                { !isLoading && <div className="grid">{this.renderAlbum(albums)}</div>}
             </>
         );
     }
