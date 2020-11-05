@@ -33,13 +33,13 @@ export default class Albums extends React.Component {
 
     renderAlbum = (albums) => {
         const { photoData } = this.state;
-        return albums.map((album) => <div className="album" key={album.id}>
+        return albums.map((album) => <div key={album.id}>
                     <Link to={`/gallery?album_id=${album.id}`}>
-                        <div className="albumCover">
+                        <div className="image">
                             <img src={photoData[album.id][0].thumbnailUrl} alt="cover"/>
                         </div>
                     </Link>
-                    <span className="albumInfo">{album.title}, {photoData[album.id].length} шт. </span>
+                    <span className="info">{album.title}, {photoData[album.id].length} шт. </span>
                     </div>
         );
     }

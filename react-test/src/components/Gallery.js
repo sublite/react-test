@@ -45,13 +45,12 @@ export default class Gallery extends React.Component {
 
     renderPhoto = (photos) => {
         return photos.map((photo) => 
-            <li key={photo.id}>
-                <div>
-                    <div>{photo.title}</div>
-                    <div><img src={photo.thumbnailUrl} alt="preview image" /></div>
-                    <button onClick={() => this.openPopUp(photo.id)}>show popup</button>  
+            <div key={photo.id}>
+                <div className="image">
+                    <img src={photo.thumbnailUrl} alt="preview image" onClick={() => this.openPopUp(photo.id)} />
                 </div>
-            </li>
+                <div className="info">{photo.title}</div>
+            </div>
         );
     }
 
@@ -64,12 +63,12 @@ export default class Gallery extends React.Component {
         return (
             <>
                 <button onClick={this.goBack}>Назад</button>
-                <h1>Фотографии</h1>
+                <p className="title">Альбомы</p>
                 {isLoading && <CircularProgress />}
                 {!isLoading && 
                 <>
                     {this.renderPopUp()}
-                    <ul>{this.renderPhoto(photos)}</ul>
+                    <div className="gallery">{this.renderPhoto(photos)}</div>
                 </>
                 }
             </>
